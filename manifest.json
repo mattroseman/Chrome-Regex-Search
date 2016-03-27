@@ -1,0 +1,26 @@
+{
+    "manifest_version": 2,
+    "name": "Regex Search",
+    "version": "0.0.0.1",
+
+    "default_local": "en",
+    "description": "Enables regex expression matching in Chrome page search",
+    "icons": {
+        "16": "16_icon.png",
+        "48": "48_icon.png",
+        "64": "64_icon.png",
+        "128": "128_icon.png"
+    },
+
+    "browser_action": {
+        "default_icon": {
+            "19": "19_icon.png",
+            "38": "38_icon.png"
+        },
+        "default_title": "Regex Search",
+        "default_popup": "popup.html"
+    },
+
+    "author": "Matthew Roseman | mroseman95@gmail.com",
+
+}
