@@ -1,15 +1,15 @@
 {
     "manifest_version": 2,
     "name": "Regex Search",
-    "version": "0.0.0.1",
+    "version": "0.0.1",
 
     "default_local": "en",
     "description": "Enables regex expression matching in Chrome page search",
     "icons": {
-        "16": "16_icon.png",
-        "48": "48_icon.png",
-        "64": "64_icon.png",
-        "128": "128_icon.png"
+        "16": "res/16_icon.png",
+        "48": "res/48_icon.png",
+        "64": "res/64_icon.png",
+        "128": "res/128_icon.png"
     },
 
     "permissions": {
@@ -27,8 +27,8 @@
 
     "browser_action": {
         "default_icon": {
-            "19": "19_icon.png",
-            "38": "38_icon.png"
+            "19": "res/19_icon.png",
+            "38": "res/38_icon.png"
         },
         "default_title": "Regex Search",
         "default_popup": "popup.html"
