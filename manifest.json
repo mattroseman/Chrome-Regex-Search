@@ -12,18 +12,10 @@
         "128": "res/128_icon.png"
     },
 
-    "permissions": {
-        "tabs", "http://*/*"
-    },
-
-    "content_scripts": {
-    },
-
-    "background": {
-    },
-
-    "options_page": {
-    },
+    "permissions": [
+        "tabs",
+        "http://*/*"
+    ],
 
     "browser_action": {
         "default_icon": {
@@ -31,7 +23,7 @@
             "38": "res/38_icon.png"
         },
         "default_title": "Regex Search",
-        "default_popup": "popup.html"
+        "default_popup": "src/popup.html"
     },
 
     "commands": {
