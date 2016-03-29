@@ -1,9 +1,9 @@
 /*jslint browser: true*/
 /*global $, jQuery, alert*/
 
-console.log("popup.js started");
-
 $(document).ready(function() {
+
+    console.log("popup.js started");
 
     $("#next").click(function () {
         var regex = $("#regex").val();
