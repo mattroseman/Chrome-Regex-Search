@@ -3,7 +3,6 @@
     "name": "Regex Search",
     "version": "0.0.1",
 
-    "default_local": "en",
     "description": "Enables regex expression matching in Chrome page search",
     "icons": {
         "16": "res/16_icon.png",
