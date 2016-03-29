@@ -17,7 +17,7 @@
     ],
 
     "content_scripts": [{
-        "js": ["src/jquery-1.12.2.min.js", "src/popup.js", "src/matchpage.js"],
+        "js": ["src/jquery-1.12.2.min.js", "src/popup.js", "src/content.js"],
         "matches": ["http://*/*", "https://*/*"]
     }],
 
