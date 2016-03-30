@@ -8,9 +8,11 @@ chrome.runtime.onMessage.addListener(
         if (request.search === "true") {
             console.log("search request sent");
 
-            // TODO perform search for regex in html
             regex = request.argument;
-            highlight($("body").html(), regex);
+            console.log("test1");
+            console.log(document);
+            console.log("test2");
+            highlight(document, regex);
 
             sendResponse({successful: "true"});
         } else {
@@ -22,12 +24,17 @@ chrome.runtime.onMessage.addListener(
  * Takes html object and regex, and highlights the text that matches the regex
  * @param html the html object that will be searched
  * @param regex the regular expression to match to the html text
- * @return null this is a recursive function that walks through the HTML text
  */
 function highlight(node, regex)  {
+    console.log(node);
     
-    // if this is a leaf node and a text node
-    if (node.childNodes.length == 0 && node.nodeType == Node.TEXT_NODE) {
+    // if this is a text node
+    if (node.nodeType == Node.TEXT_NODE) {
         console.log(node.nodeValue);
+    }
+
+    // for every child node call the highlight function to recursively search
+    for (node n : node.childNodes) {
+        highlight(n, regex);
     }
 }

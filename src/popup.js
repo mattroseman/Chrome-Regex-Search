@@ -36,7 +36,9 @@ $(document).ready(function() {
  */
 function getNextResult() {
     getInputText();
-    var request = JSON.parse("{search: 'true', argument: " + regex + "}");
+    var request = "{\"search\": \"true\", \"argument\": \"" + regex + "\"}";
+    console.log(request);
+    var request = JSON.parse(request);
     if (validRegex(regex)) {
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
             chrome.tabs.sendMessage(tabs[0].id, request, function(response) {
