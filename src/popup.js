@@ -1,7 +1,3 @@
-/*jslint browser: true*/
-/*global $, jQuery, alert, getInputText, chrome, getNextResult, getPrevResult*/
-
-
 var regex; // the regular expression being searched
 var results; // the results of the regex search on a page
 
@@ -24,7 +20,6 @@ $(document).ready(function() {
         }
     });
 
-
     // button next is pressed
     $("#next").click(function () {
         getNextResult();
@@ -41,11 +36,17 @@ $(document).ready(function() {
  */
 function getNextResult() {
     getInputText();
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, {search: "true"}, function(response) {
-            console.log(response.successful);
+    var request = JSON.parse("{search: 'true', argument: " + regex + "}");
+    if (validRegex(regex)) {
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, request, function(response) {
+                console.log(response.successful);
+            });
         });
-    });
+    } else {
+        // TODO indicate to user that the regex is wrong
+        console.log("invalid regex expression");
+    }
 }
 
 /**
@@ -70,4 +71,19 @@ function getInputText() {
     // keep the text in the textbox the same
     $("#regex").val(regex);
     return regex;
+}
+
+/**
+ * Takes a regex string and determines if it is valid or not
+ * @param re the regular expression
+ * @return boolean indicating if re is a valid regular expression
+ */
+function  validRegex (re) {
+    try {
+        new RegExp(re);
+    } catch (e) {
+        return false;
+    }
+
+    return true;
 }
