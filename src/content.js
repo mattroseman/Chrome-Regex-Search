@@ -9,10 +9,7 @@ chrome.runtime.onMessage.addListener(
             console.log("search request sent");
 
             regex = request.argument;
-            console.log("test1");
-            console.log(document);
-            console.log("test2");
-            highlight(document, regex);
+            highlight(document.body, regex);
 
             sendResponse({successful: "true"});
         } else {
@@ -25,16 +22,18 @@ chrome.runtime.onMessage.addListener(
  * @param html the html object that will be searched
  * @param regex the regular expression to match to the html text
  */
-function highlight(node, regex)  {
-    console.log(node);
-    
-    // if this is a text node
-    if (node.nodeType == Node.TEXT_NODE) {
-        console.log(node.nodeValue);
+function highlight(searchNode, regex)  {
+
+    // if this is a nonempty text node
+    if (searchNode.nodeType === Node.TEXT_NODE && searchNode.nodeValue.trim() !== "") {
+        console.log(searchNode.nodeValue);
     }
 
-    // for every child node call the highlight function to recursively search
-    for (node n : node.childNodes) {
-        highlight(n, regex);
+    searchNode = searchNode.firstChild;
+    while (searchNode) {
+        highlight(searchNode);
+        searchNode = searchNode.nextSibling;
     }
+
+    return;
 }
