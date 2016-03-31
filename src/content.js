@@ -26,7 +26,16 @@ function highlight(searchNode, regex)  {
 
     // if this is a nonempty text node
     if (searchNode.nodeType === Node.TEXT_NODE && searchNode.nodeValue.trim() !== "") {
-        console.log(searchNode.nodeValue);
+        var nodeValue = searchNode.nodeValue;
+        regex = new RegExp(regex, "g");
+        var result = regex.exec(nodeValue);
+        // if a match was found
+        if (result !== null) {
+            var before = nodeValue.substring(0, result.index); // the string up to the first match
+            var match = nodeValue.substring(result.index, regex.lastIndex); // the string of matched text
+            var after = nodeValue.substring(result.lastIndex); // the rest of the text (still to be matched)
+            // TODO create the HTMLElements and replace the current searchNode with these elements
+        }
     }
 
     searchNode = searchNode.firstChild;
