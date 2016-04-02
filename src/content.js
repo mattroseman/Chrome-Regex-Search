@@ -27,6 +27,7 @@ chrome.runtime.onMessage.addListener(
 function highlight(searchNode, regexString)  {
 
     if (searchNode.nodeName == "MARK" ||
+        searchNode.nodeName == "SCRIPT" ||
         searchNode.nodeName == "NOSCRIPT" ||
         searchNode.nodeName == "STYLE") {
 

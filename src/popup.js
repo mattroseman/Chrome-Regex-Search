@@ -40,9 +40,16 @@ function getNextResult() {
     console.log(request);
     var request = JSON.parse(request);
     if (validRegex(regex)) {
-        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        /*chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
             chrome.tabs.sendMessage(tabs[0].id, request, function(response) {
                 console.log(response.successful);
+            });
+        });*/
+        chrome.webNavigation.getAllFrames({tabId: tabId}, function(details) {
+            details.forEach(function(frame) {
+                chrome.tabs.sendMessage(tabId, request, function(response) {
+                    console.log(response.successful);
+                });
             });
         });
     } else {
