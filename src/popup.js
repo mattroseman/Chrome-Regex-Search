@@ -40,18 +40,22 @@ function getNextResult() {
     console.log(request);
     var request = JSON.parse(request);
     if (validRegex(regex)) {
-        /*chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            // this should send a message to every frame in this tab
             chrome.tabs.sendMessage(tabs[0].id, request, function(response) {
                 console.log(response.successful);
             });
-        });*/
-        chrome.webNavigation.getAllFrames({tabId: tabId}, function(details) {
-            details.forEach(function(frame) {
-                chrome.tabs.sendMessage(tabId, request, function(response) {
-                    console.log(response.successful);
+        });
+       /*chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            //chrome.webNavigation.getAllFrames({tabId: tabId}, function(details) {
+            chrome.webNavigation.getAllFrames({tabId: tabs[0].id}, function(details) {
+                details.forEach(function(frame) {
+                    chrome.tabs.sendMessage(tabs[0].id, request, function(response) {
+                        console.log(response.successful);
+                    });
                 });
             });
-        });
+        });*/
     } else {
         // TODO indicate to user that the regex is wrong
         console.log("invalid regex expression");

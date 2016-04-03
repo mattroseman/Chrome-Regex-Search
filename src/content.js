@@ -11,9 +11,12 @@ chrome.runtime.onMessage.addListener(
             console.log("search request sent");
 
             regexString = request.argument;
-            highlight(document.body, regexString);
 
-            sendResponse({successful: "true"});
+            console.log(document.body);
+            console.log(window.location.href);
+
+            //highlight(document.body, regexString);
+            highlight(document.body, regexString);
         } else {
             sendResponse({successful: "false"});
         }
@@ -26,13 +29,13 @@ chrome.runtime.onMessage.addListener(
  */
 function highlight(searchNode, regexString)  {
 
-    if (searchNode.nodeName == "MARK" ||
+    /*if (searchNode.nodeName == "MARK" ||
         searchNode.nodeName == "SCRIPT" ||
         searchNode.nodeName == "NOSCRIPT" ||
         searchNode.nodeName == "STYLE") {
 
             return;
-        }
+    }*/
 
     // if this is a nonempty text node
     if (searchNode.nodeType === Node.TEXT_NODE && searchNode.nodeValue.trim() !== "") {
@@ -86,9 +89,9 @@ function highlight(searchNode, regexString)  {
         } while (result != null);
     } else {
         // if this is a hidden node or not displayed in on screen
-        if ($(searchNode).css('display') == 'none' || $(searchNode).css('display') == 'hidden') {
-            return;
-        }
+        //if ($(searchNode).css('display') == 'none' || $(searchNode).css('display') == 'hidden') {
+         //   return;
+        //}
     }
 
     searchNode = searchNode.firstChild;
