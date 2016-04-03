@@ -88,10 +88,11 @@ function highlight(searchNode, regexString)  {
             }
         } while (result != null);
     } else {
+        // So for some text boxes the hidden tag is set, so I'm going to continue to check everything hidden or not unless I figure out a better solution
         // if this is a hidden node or not displayed in on screen
-        //if ($(searchNode).css('display') == 'none' || $(searchNode).css('display') == 'hidden') {
-         //   return;
-        //}
+        /*if ($(searchNode).css('display') == 'none' || $(searchNode).css('display') == 'hidden') {
+           return;
+        }*/
     }
 
     searchNode = searchNode.firstChild;
