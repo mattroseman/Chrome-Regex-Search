@@ -29,16 +29,16 @@ chrome.runtime.onMessage.addListener(
  */
 function highlight(searchNode, regexString)  {
 
-    /*if (searchNode.nodeName == "MARK" ||
+    if (searchNode.nodeName == "MARK" ||
         searchNode.nodeName == "SCRIPT" ||
         searchNode.nodeName == "NOSCRIPT" ||
         searchNode.nodeName == "STYLE") {
 
             return;
-    }*/
+    }
 
     // if this is a nonempty text node
-    if (searchNode.nodeType === Node.TEXT_NODE && searchNode.nodeValue.trim() !== "") {
+    if (searchNode.nodeType === Node.TEXT_NODE && (/[^\t\n\r ]/.test(searchNode.nodeValue))) {
         var nodeValue, before, match, after; // string value of nodes
         var regex; // the Regular Expression
         var result; // result of regex.exec("string");
