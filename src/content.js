@@ -32,7 +32,8 @@ function highlight(searchNode, regexString)  {
     if (searchNode.nodeName == "MARK" ||
         searchNode.nodeName == "SCRIPT" ||
         searchNode.nodeName == "NOSCRIPT" ||
-        searchNode.nodeName == "STYLE") {
+        searchNode.nodeName == "STYLE" ||
+        searchNode.nodeType == Node.COMMENT_NODE) {
 
             return;
     }
