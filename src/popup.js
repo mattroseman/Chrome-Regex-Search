@@ -38,7 +38,7 @@ function getNextResult() {
     getInputText();
     var request = "{\"search\": \"true\", \"argument\": \"" + regex + "\"}";
     console.log(request);
-    var request = JSON.parse(request);
+    request = JSON.parse(request);
     if (validRegex(regex)) {
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
             // this should send a message to every frame in this tab
